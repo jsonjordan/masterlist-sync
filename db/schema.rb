@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_02_190308) do
+ActiveRecord::Schema.define(version: 2019_03_02_233950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "master_playlists", force: :cascade do |t|
+    t.string "name"
+    t.string "spotify_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_master_playlists_on_user_id"
+  end
+
+  create_table "minion_playlists", force: :cascade do |t|
+    t.string "name"
+    t.string "spotify_id"
+    t.bigint "master_playlist_id"
+    t.index ["master_playlist_id"], name: "index_minion_playlists_on_master_playlist_id"
+  end
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,4 +50,6 @@ ActiveRecord::Schema.define(version: 2019_03_02_190308) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "master_playlists", "users"
+  add_foreign_key "minion_playlists", "master_playlists"
 end
