@@ -28,6 +28,7 @@ gem 'jbuilder'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'rspotify'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
