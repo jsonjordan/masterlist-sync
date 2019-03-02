@@ -1,3 +1,69 @@
-<h2>User Info</h2>
+<div class="container">
+    <div class ="row">
+        <div class="col-sm-4">
+            <div class="panel user-info-panel">
+                <div class="panel-heading"> <%= @user.name  %> </div>
+                <div class="panel-body">
+                    <div class="center-block">
+                        <%= image_tag(@user.image, :class => "profile-img center-block") %>
+                        <p>You currently have 3 out of <%= @playlists.count %> playlists managed by MasterSync! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<%   %>
+        <div class="col-sm-4">
+            <div class="panel total-playlists-panel">
+                <div class="panel-heading"> your <%= @playlists.count %> non-master playlists: </div>
+                <div class="panel-body">
+                    <ol>
+                        <% @playlists.each do |p|%>
+                            <li><%= p.name %></li>
+                        <% end %>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class ="row">
+
+                <div class="panel playlist-1-panel">
+                    <div class="panel-heading"> 'ABC' Master Playlist: </div>
+                    <div class="panel-body">
+                        <ol>
+                            <% @playlists.sample(1).each do |p|%>
+                                <li><%= p.name %></li>
+                            <% end %>
+                        </ol>
+                    </div>
+                </div>
+
+
+                <div class="panel playlist-2-panel">
+                    <div class="panel-heading"> '123' Master Playlist: </div>
+                    <div class="panel-body">
+                        <ol>
+                            <% @playlists.sample(3).each do |p|%>
+                                <li><%= p.name %></li>
+                            <% end %>
+                        </ol>
+                    </div>
+                </div>
+
+
+                <div class="panel playlist-3-panel">
+                    <div class="panel-heading"> 'Do Re Me' Master Playlist: </div>
+                    <div class="panel-body">
+                        <ol>
+                            <% @playlists.sample(2).each do |p|%>
+                                <li><%= p.name %></li>
+                            <% end %>
+                        </ol>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

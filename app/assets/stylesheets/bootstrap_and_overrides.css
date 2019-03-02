@@ -6,5 +6,103 @@
 */
 
 .spotify-text {
-  color: #1db954
+  color: #1db954;
+}
+
+.user-info-panel {
+  background-color: black;
+  color: white;
+  font-size: large;
+  border-radius: 10px;
+  border-left-color: #1db954;
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  height:100vh;
+}
+
+.user-info-panel > .panel-heading {
+  background-color: #1db954;
+  color: white;
+  border-top-right-radius: 10px;
+}
+
+.profile-img {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+
+.total-playlists-panel {
+  background-color: #1db954;
+  color: white;
+  font-size: large;
+  border-radius: 10px;
+  border-left-color: black;
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  height:100vh;
+}
+
+.total-playlists-panel > .panel-heading {
+  background-color: black;
+  color: white;
+  border-top-right-radius: 10px;
+}
+
+.playlist-1-panel {
+  background-color: white;
+  color: black;
+  font-size: large;
+  border-radius: 10px;
+  border-left-color: yellow;
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.playlist-1-panel > .panel-heading {
+  background-color: yellow;
+  color: black;
+  border-top-right-radius: 10px;
+}
+
+.playlist-2-panel {
+  background-color: white;
+  color: black;
+  font-size: large;
+  border-radius: 10px;
+  border-left-color: orange;
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.playlist-2-panel > .panel-heading {
+  background-color: orange;
+  color: black;
+  border-top-right-radius: 10px;
+}
+
+.playlist-3-panel {
+  background-color: white;
+  color: black;
+  font-size: large;
+  border-radius: 10px;
+  border-left-color: rgb(156, 116, 189);
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.playlist-3-panel > .panel-heading {
+  background-color: rgb(156, 116, 189);
+  color: black;
+  border-top-right-radius: 10px;
 }
