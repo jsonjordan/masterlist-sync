@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_02_233950) do
+ActiveRecord::Schema.define(version: 2019_03_03_033432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 2019_03_02_233950) do
     t.string "name"
     t.string "spotify_id"
     t.bigint "master_playlist_id"
+    t.bigint "user_id"
     t.index ["master_playlist_id"], name: "index_minion_playlists_on_master_playlist_id"
+    t.index ["user_id"], name: "index_minion_playlists_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -52,4 +54,5 @@ ActiveRecord::Schema.define(version: 2019_03_02_233950) do
 
   add_foreign_key "master_playlists", "users"
   add_foreign_key "minion_playlists", "master_playlists"
+  add_foreign_key "minion_playlists", "users"
 end
