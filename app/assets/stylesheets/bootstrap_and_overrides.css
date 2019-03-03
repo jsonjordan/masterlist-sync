@@ -5,15 +5,24 @@
   =require twitter-bootstrap-static/sprites
 */
 
+/*
+Spotify Green = 1DB954
+Spotify Black = 191414
+MasterSync Green (Turquoise Green) = 9DCBBA
+MasterSync Gray (Ebony) = 5E5E5E
+MasterSync Bronze (Wenge) = 6D5959
+MasterSync Bronze accent (Umber) = 5E4D4D
+*/
+
 .spotify-text {
-  color: #1db954;
+  color: #9DCBBA;
 }
 
 .user-info-panel {
-  background-color: black;
+  background-color: #5E5E5E;
   color: white;
   font-size: large;
-  border-radius: 10px;
+  border-radius: 8px;
   border-left-color: #1db954;
   border-left-width: 6px;
   border-right: none;
@@ -23,23 +32,22 @@
 }
 
 .user-info-panel > .panel-heading {
-  background-color: #1db954;
-  color: white;
-  border-top-right-radius: 10px;
+  background-color: #9DCBBA;
+  color: black;
 }
 
 .profile-img {
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid #191414;
 }
 
 
 .total-playlists-panel {
-  background-color: #1db954;
-  color: white;
+  background-color: #9DCBBA;
+  color: black;
   font-size: large;
-  border-radius: 10px;
-  border-left-color: black;
+  border-radius: 8px;
+  border-left-color: #191414;
   border-left-width: 6px;
   border-right: none;
   border-top: none;
@@ -48,17 +56,16 @@
 }
 
 .total-playlists-panel > .panel-heading {
-  background-color: black;
+  background-color: #5E5E5E;
   color: white;
-  border-top-right-radius: 10px;
 }
 
 .playlist-1-panel {
   background-color: white;
-  color: black;
+  color: #191414;
   font-size: large;
   border-radius: 10px;
-  border-left-color: yellow;
+  border-left-color: #5E5E5E;
   border-left-width: 6px;
   border-right: none;
   border-top: none;
@@ -66,17 +73,17 @@
 }
 
 .playlist-1-panel > .panel-heading {
-  background-color: yellow;
-  color: black;
+  background-color: #5E5E5E;
+  color: #191414;
   border-top-right-radius: 10px;
 }
 
 .playlist-2-panel {
   background-color: white;
-  color: black;
+  color: #191414;
   font-size: large;
-  border-radius: 10px;
-  border-left-color: orange;
+  border-radius: 8px;
+  border-left-color: #5E4D4D;
   border-left-width: 6px;
   border-right: none;
   border-top: none;
@@ -84,17 +91,16 @@
 }
 
 .playlist-2-panel > .panel-heading {
-  background-color: orange;
-  color: black;
-  border-top-right-radius: 10px;
+  background-color: #6D5959;
+  color: white;
 }
 
 .playlist-3-panel {
   background-color: white;
-  color: black;
+  color: #191414;
   font-size: large;
   border-radius: 10px;
-  border-left-color: rgb(156, 116, 189);
+  border-left-color: #9DCBBA;
   border-left-width: 6px;
   border-right: none;
   border-top: none;
@@ -102,7 +108,7 @@
 }
 
 .playlist-3-panel > .panel-heading {
-  background-color: rgb(156, 116, 189);
-  color: black;
+  background-color: #9DCBBA;
+  color: #191414;
   border-top-right-radius: 10px;
 }

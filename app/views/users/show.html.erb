@@ -5,7 +5,11 @@
                 <div class="panel-heading"> <%= @user.name  %> </div>
                 <div class="panel-body">
                     <div class="center-block">
-                        <%= image_tag(@user.image, :class => "profile-img center-block") %>
+                        <% if @user.image.present? %>
+                            <%= image_tag(@user.image, :size => "300x200", :class => "profile-img center-block") %>
+                        <% else %>
+                            <%= image_tag("http://lorempixel.com/300/200/", :class => "profile-img center-block") %>
+                        <% end %>
                         <p>You currently have 3 out of <%= @playlists.count %> playlists managed by MasterSync! </p>
                     </div>
                 </div>
@@ -14,7 +18,7 @@
 
         <div class="col-sm-4">
             <div class="panel total-playlists-panel">
-                <div class="panel-heading"> your <%= @playlists.count %> non-master playlists: </div>
+                <div class="panel-heading"> Your <%= @playlists.count %> non-master playlists: </div>
                 <div class="panel-body">
                     <ol>
                         <% @playlists.each do |p|%>
@@ -28,7 +32,7 @@
         <div class="col-sm-4">
             <div class ="row">
 
-                <div class="panel playlist-1-panel">
+                <div class="panel playlist-2-panel">
                     <div class="panel-heading"> 'ABC' Master Playlist: </div>
                     <div class="panel-body">
                         <ol>
@@ -52,7 +56,7 @@
                 </div>
 
 
-                <div class="panel playlist-3-panel">
+                <div class="panel playlist-2-panel">
                     <div class="panel-heading"> 'Do Re Me' Master Playlist: </div>
                     <div class="panel-body">
                         <ol>
