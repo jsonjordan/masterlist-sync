@@ -2,6 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     def spotify
         @user = User.from_omniauth(request.env["omniauth.auth"])
+        @user.update_user_playlists
 
         if @user
             sign_in @user

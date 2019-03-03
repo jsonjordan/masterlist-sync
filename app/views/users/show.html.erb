@@ -10,7 +10,7 @@
                         <% else %>
                             <%= image_tag("http://lorempixel.com/300/200/", :class => "profile-img center-block") %>
                         <% end %>
-                        <p>You currently have 3 out of <%= @playlists.count %> playlists managed by MasterSync! </p>
+                        <p>You currently have 3 out of <%= @user.minion_playlists.count %> playlists managed by MasterSync! </p>
                     </div>
                 </div>
             </div>
@@ -18,10 +18,10 @@
 
         <div class="col-sm-4">
             <div class="panel total-playlists-panel">
-                <div class="panel-heading"> Your <%= @playlists.count %> non-master playlists: </div>
+                <div class="panel-heading"> Your <%= @user.minion_playlists.count %> non-master playlists: </div>
                 <div class="panel-body">
                     <ol>
-                        <% @playlists.each do |p|%>
+                        <% @user.minion_playlists.each do |p|%>
                             <li><%= p.name %></li>
                         <% end %>
                     </ol>
@@ -36,7 +36,7 @@
                     <div class="panel-heading"> 'ABC' Master Playlist: </div>
                     <div class="panel-body">
                         <ol>
-                            <% @playlists.sample(1).each do |p|%>
+                            <% @user.minion_playlists.sample(1).each do |p|%>
                                 <li><%= p.name %></li>
                             <% end %>
                         </ol>
@@ -48,7 +48,7 @@
                     <div class="panel-heading"> '123' Master Playlist: </div>
                     <div class="panel-body">
                         <ol>
-                            <% @playlists.sample(3).each do |p|%>
+                            <% @user.minion_playlists.sample(3).each do |p|%>
                                 <li><%= p.name %></li>
                             <% end %>
                         </ol>
@@ -60,7 +60,7 @@
                     <div class="panel-heading"> 'Do Re Me' Master Playlist: </div>
                     <div class="panel-body">
                         <ol>
-                            <% @playlists.sample(2).each do |p|%>
+                            <% @user.minion_playlists.sample(2).each do |p|%>
                                 <li><%= p.name %></li>
                             <% end %>
                         </ol>
