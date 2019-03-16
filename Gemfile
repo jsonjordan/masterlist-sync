@@ -29,6 +29,7 @@ gem 'jbuilder'
 
 gem 'rspotify'
 gem 'figaro'
+gem 'httparty'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -57,9 +58,9 @@ gem 'pundit'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'bootstrap_form'
 group :development, :test do
-  gem 'pry-rails'
+  gem 'pry'
+  gem 'pry-nav'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'httplog'
 end
-
-gem 'httparty'

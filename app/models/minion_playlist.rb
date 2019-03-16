@@ -7,10 +7,9 @@ class MinionPlaylist < ApplicationRecord
     belongs_to :user
     
     def make_master
-        binding.pry
         unless self.user.master_playlists.find_by(name: "#{self.name} Master")
             spotify_user = RSpotify::User.new(self.user.spotify_hash)
-            spotify_new_master = spotify_user.create_playlist!("#{self.name} Master")
+            spotify_new_master = spotify_user.create_playlist!("#{self.name} Master", public: false)
             new_master = self.user.master_playlists.create(
                 name: "#{self.name} Master",
                 spotify_id: spotify_new_master.id
@@ -18,7 +17,7 @@ class MinionPlaylist < ApplicationRecord
             self.master_playlist = new_master
             self.save
 
-            new_master.initialize_master(self)
+            new_master.initialize_master
 
         end
     end
