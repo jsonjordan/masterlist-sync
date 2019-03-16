@@ -12,13 +12,17 @@ class User < ApplicationRecord
   serialize :spotify_hash, Hash
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name
-      user.image = auth.info.image
-      user.save!
+    unless user = User.find_by(provider: auth.provider, uid: auth.uid)
+      user = User.new()
     end
+
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0, 20]
+    user.name = auth.info.name
+    user.image = auth.info.image
+    user.spotify_hash = auth
+    user.save!
+    user
   end
 
   def update_user_playlists
