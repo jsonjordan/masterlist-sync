@@ -9,6 +9,7 @@ class MasterPlaylist < ApplicationRecord
     def initialize_master
         all_tracks = get_all_tracks(spotify_minion)
         add_tracks_to_master(all_tracks)
+        self
     end
 
     def add_tracks_to_master(tracks, offset = 0)

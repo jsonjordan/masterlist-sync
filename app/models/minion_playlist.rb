@@ -12,7 +12,8 @@ class MinionPlaylist < ApplicationRecord
             spotify_new_master = spotify_user.create_playlist!("#{self.name} Master", public: false)
             new_master = self.user.master_playlists.create(
                 name: "#{self.name} Master",
-                spotify_id: spotify_new_master.id
+                spotify_id: spotify_new_master.id,
+                image_url: spotify_new_master.images.first&.dig("url") || self.image_url || ""
             )
             self.master_playlist = new_master
             self.save
