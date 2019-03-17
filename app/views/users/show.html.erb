@@ -10,7 +10,7 @@
                         <% else %>
                             <%= image_tag("http://lorempixel.com/300/200/", :class => "profile-img center-block") %>
                         <% end %>
-                        <p>You currently have 3 out of <%= @user.minion_playlists.count %> playlists managed by MasterSync! </p>
+                        <p>You currently have <%= @master.count %> out of <%= @minion.count %> playlists managed by MasterSync! </p>
                     </div>
                 </div>
             </div>
@@ -18,11 +18,13 @@
 
         <div class="col-sm-4">
             <div class="panel total-playlists-panel">
-                <div class="panel-heading"> Your <%= @user.minion_playlists.count %> non-master playlists: </div>
+                <div class="panel-heading"> Your <%= @minion.count - @master.count %> playlists without masters: </div>
                 <div class="panel-body">
                     <ol>
-                        <% @user.minion_playlists.each do |p|%>
-                            <li><%= p.name %></li>
+                        <% @minion.each do |p|%>
+                            <% if p.master_playlist_id.nil? %>
+                                <li><%= link_to p.name, "/minion/#{p.id}", method: :post %></li>
+                            <% end %>
                         <% end %>
                     </ol>
                 </div>
@@ -33,40 +35,15 @@
             <div class ="row">
 
                 <div class="panel playlist-2-panel">
-                    <div class="panel-heading"> 'ABC' Master Playlist: </div>
+                    <div class="panel-heading"> Your <%= @master.count %> playlists with masters: </div>
                     <div class="panel-body">
                         <ol>
-                            <% @user.minion_playlists.sample(1).each do |p|%>
-                                <li><%= p.name %></li>
+                            <% @master.each do |p|%>
+                                <li><%= link_to p.minion_playlists.first.name, "/master/#{p.name}" %></li>
                             <% end %>
                         </ol>
                     </div>
                 </div>
-
-
-                <div class="panel playlist-2-panel">
-                    <div class="panel-heading"> '123' Master Playlist: </div>
-                    <div class="panel-body">
-                        <ol>
-                            <% @user.minion_playlists.sample(3).each do |p|%>
-                                <li><%= p.name %></li>
-                            <% end %>
-                        </ol>
-                    </div>
-                </div>
-
-
-                <div class="panel playlist-2-panel">
-                    <div class="panel-heading"> 'Do Re Me' Master Playlist: </div>
-                    <div class="panel-body">
-                        <ol>
-                            <% @user.minion_playlists.sample(2).each do |p|%>
-                                <li><%= p.name %></li>
-                            <% end %>
-                        </ol>
-                    </div>
-                </div>
-                
             </div>
         </div>
     </div>
