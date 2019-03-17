@@ -58,7 +58,7 @@ gem 'pundit'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'bootstrap_form'
 group :development, :test do
-  gem 'pry'
+  gem 'pry-rails'
   gem 'pry-nav'
   gem 'better_errors'
   gem 'binding_of_caller'
