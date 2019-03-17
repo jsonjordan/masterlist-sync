@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         if @user
             sign_in @user
-            @user.update_user_playlists
+            @user.update_playlist_list
             set_flash_message(:notice, :success, kind: "Spotify") if is_navigational_format?
             redirect_to @user
         else
