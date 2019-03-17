@@ -1,0 +1,43 @@
+<div class="container">
+    <div class ="row">
+        <div class="col-sm-4">
+            <div class="panel user-info-panel">
+                <div class="panel-heading"> <%= @master.name  %> </div>
+                <div class="panel-body">
+                    <div class="center-block">
+                        <% if @master.image_url.present? %>
+                            <%= image_tag(@master.image_url, :size => "300x300") %>
+                        <% else %>
+                            <%= image_tag("http://lorempixel.com/300/300/") %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="panel total-playlists-panel">
+                    <div class="panel-heading"> Stats </div>
+                    <div class="panel-body">
+                        <ol>
+                            <li>Your playlist was last checked on: <%= DateTime.now.to_date %></li>
+                            <li>Your playlist was last updated on: <%= 2.days.ago.to_date %></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class ="row">
+                <div class="panel playlist-2-panel">
+                    <div class="panel-heading"> Options </div>
+                    <div class="panel-body">
+                        <ol>
+                            <li>Deactivate this Master Playlist</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
