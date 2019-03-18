@@ -27,14 +27,13 @@ class User < ApplicationRecord
   end
 
   def update_playlist_list
-    user_playlists = get_all_playlists
-    user_playlists.each do |user_playlist|
+    all_user_playlists.each do |user_playlist|
       unless self.master_playlists.find_by(spotify_id: user_playlist.id)
         self.minion_playlists.where(spotify_id: user_playlist.id).first_or_create do |new_playlist|
           new_playlist.name = user_playlist.name
           new_playlist.spotify_id = user_playlist.id
           new_playlist.image_url = user_playlist.images.first&.dig("url") || ""
-          new_playlist.is_valid = false if (user_playlist.tracks_is_local[nil] && user_playlist.tracks_is_local.length == 1)
+          new_playlist.is_valid = false if user_playlist.images.length == 0
           new_playlist.save!
         end
       end
@@ -48,6 +47,10 @@ class User < ApplicationRecord
       get_all_playlists(playlist_list)
     end
     playlist_list
+  end
+
+  def all_user_playlists
+    @all_user_playlists ||= get_all_playlists
   end
 
   def spotify_user
