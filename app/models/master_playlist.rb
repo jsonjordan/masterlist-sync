@@ -9,6 +9,7 @@ class MasterPlaylist < ApplicationRecord
     def initialize_master
         all_tracks = get_all_tracks(spotify_minion)
         add_tracks_to_master(all_tracks)
+        update_img
         self
     end
 
@@ -55,6 +56,18 @@ class MasterPlaylist < ApplicationRecord
 
     def spotify_minion
         @spotify_minion ||= RSpotify::Playlist.find(self.user.name, self.minion_playlists.first.spotify_id)
+    end
+
+    def update_spotify_master
+        @spotify_master = RSpotify::Playlist.find(self.user.name, self.spotify_id)
+    end
+
+
+    def update_img
+        old_image = self.image_url
+        update_spotify_master
+        self.image_url = @spotify_master.images.first&.dig("url") || self.minion_playlists.first.image_url || ""
+        self.save if old_image != self.image_url
     end
 end
 
