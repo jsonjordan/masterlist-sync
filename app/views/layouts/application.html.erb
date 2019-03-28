@@ -30,7 +30,7 @@
           </ul>
           <ul class="nav navbar-nav pull-right">
             <% if current_user %>
-              <li><%= link_to current_user.name, "/users/user/#{current_user.id}", class: 'css_class', style: 'color:#9DCBBA'  %></li>
+              <li><%= link_to current_user.name, "/user/#{current_user.id}/dashboard", class: 'css_class', style: 'color:#9DCBBA'  %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
             <% else %>
               <li><%= link_to "Sign in with Spotify", user_spotify_omniauth_authorize_path, class: 'css_class', style: 'color:#9DCBBA' %></li>
