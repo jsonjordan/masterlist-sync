@@ -30,6 +30,7 @@ gem 'jbuilder'
 gem 'rspotify'
 gem 'figaro'
 gem 'httparty'
+gem "mini_magick"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -59,7 +60,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'bootstrap_form'
 group :development, :test do
   gem 'pry-rails'
-  gem 'pry-nav'
+  gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'httplog'
