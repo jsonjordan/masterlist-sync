@@ -12,6 +12,8 @@ MasterSync Green (Turquoise Green) = 9DCBBA
 MasterSync Gray (Ebony) = 5E5E5E
 MasterSync Bronze (Wenge) = 6D5959
 MasterSync Bronze accent (Umber) = 5E4D4D
+
+7B287D
 */
 
 .spotify-text {
@@ -28,12 +30,13 @@ MasterSync Bronze accent (Umber) = 5E4D4D
   border-right: none;
   border-top: none;
   border-bottom: none;
-  height:100vh;
+  overflow: auto;
+  min-height:75vh;
 }
 
 .user-info-panel > .panel-heading {
   background-color: #9DCBBA;
-  color: black;
+  color: white;
 }
 
 .profile-img {
@@ -43,20 +46,21 @@ MasterSync Bronze accent (Umber) = 5E4D4D
 
 
 .total-playlists-panel {
-  background-color: #9DCBBA;
-  color: black;
+  background-color: #5E5E5E;
+  color: white;
   font-size: large;
   border-radius: 8px;
-  border-left-color: #191414;
+  border-left-color: #330C2F;
   border-left-width: 6px;
   border-right: none;
   border-top: none;
   border-bottom: none;
-  height:100vh;
+  overflow: auto;
+  min-height:75vh;
 }
 
 .total-playlists-panel > .panel-heading {
-  background-color: #5E5E5E;
+  background-color: #575366;
   color: white;
 }
 
@@ -70,6 +74,8 @@ MasterSync Bronze accent (Umber) = 5E4D4D
   border-right: none;
   border-top: none;
   border-bottom: none;
+  overflow: auto;
+  min-height:75vh;
 }
 
 .playlist-1-panel > .panel-heading {
@@ -78,9 +84,9 @@ MasterSync Bronze accent (Umber) = 5E4D4D
   border-top-right-radius: 10px;
 }
 
-.playlist-2-panel {
-  background-color: white;
-  color: #191414;
+.master-playlist-panel {
+  background-color: #5E5E5E;
+  color: white;
   font-size: large;
   border-radius: 8px;
   border-left-color: #5E4D4D;
@@ -88,9 +94,11 @@ MasterSync Bronze accent (Umber) = 5E4D4D
   border-right: none;
   border-top: none;
   border-bottom: none;
+  overflow: auto;
+  min-height:75vh;
 }
 
-.playlist-2-panel > .panel-heading {
+.master-playlist-panel > .panel-heading {
   background-color: #6D5959;
   color: white;
 }
@@ -105,6 +113,8 @@ MasterSync Bronze accent (Umber) = 5E4D4D
   border-right: none;
   border-top: none;
   border-bottom: none;
+  overflow: auto;
+  min-height:75vh;
 }
 
 .playlist-3-panel > .panel-heading {
