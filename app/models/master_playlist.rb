@@ -23,7 +23,7 @@ class MasterPlaylist < ApplicationRecord
 
     def update_tracks
         new_tracks = get_new_tracks
-        add_tracks(new_tracks)
+        add_tracks_to_master(new_tracks)
     end
 
     def get_new_tracks
@@ -44,7 +44,6 @@ class MasterPlaylist < ApplicationRecord
         end
         remove_local(tracks_list)
     end
-
 
     def remove_local(track_list)
         filtered = track_list.select { |track| track.uri.exclude? "local"}
@@ -70,11 +69,3 @@ class MasterPlaylist < ApplicationRecord
         self.save if old_image != self.image_url
     end
 end
-
-
-# spotify_user = RSpotify::User.new(User.first.spotify_hash)
-# master = MasterPlaylist.first
-# minion = MinionPlaylist.find(6)
-# spotify_master = RSpotify::Playlist.find(me.name, master.spotify_id)
-# spotify_minion = RSpotify::Playlist.find(me.name, minion.spotify_id)
-# master.add_tracks(spotify_minion, spotify_master, 100)
