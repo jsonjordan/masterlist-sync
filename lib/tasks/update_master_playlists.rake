@@ -1,8 +1,10 @@
 
 desc 'Update Masters Playlists On Spotify'
 task update_master_playlists: :environment do
-    MasterPlaylist.find_each do |pl|
-        RSpotify::User.new(pl.user.spotify_hash)
-        pl.update_tracks
+    User.find_each do |u|
+        RSpotify::User.new(u.spotify_hash)
+        u.masterplaylists.each do |pl|
+            pl.update_tracks
+        end
     end
 end
