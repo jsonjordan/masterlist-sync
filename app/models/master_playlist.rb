@@ -23,7 +23,7 @@ class MasterPlaylist < ApplicationRecord
 
     def update_tracks
         new_tracks = get_new_tracks
-        add_tracks_to_master(new_tracks)
+        add_tracks_to_master(new_tracks) if new_tracks.any?
     end
 
     def get_new_tracks
