@@ -21,8 +21,8 @@
                     <div class="panel-heading"> Stats </div>
                     <div class="panel-body">
                         <ol>
-                            <li>Your playlist was last checked on: <%= DateTime.now.to_date %></li>
-                            <li>Your playlist was last updated on: <%= 2.days.ago.to_date %></li>
+                            <li>Your playlist was last checked on: <%= @master.last_checked %></li>
+                            <li>Your playlist was last updated on: <%= @master.last_updated %></li>
                         </ol>
                     </div>
                 </div>
