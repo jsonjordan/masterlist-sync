@@ -28,6 +28,7 @@ class MasterPlaylist < ApplicationRecord
             self.last_updated = Date.today
         end
         self.last_checked = Date.today
+        self.save
     end
 
     def get_new_tracks
