@@ -10,6 +10,9 @@ class MasterPlaylist < ApplicationRecord
         all_tracks = get_all_tracks(spotify_minion)
         add_tracks_to_master(all_tracks)
         update_img
+        self.last_updated = Date.today
+        self.last_checked = Date.today
+        self.save
         self
     end
 
