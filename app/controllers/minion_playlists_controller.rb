@@ -1,6 +1,6 @@
 class MinionPlaylistsController < ApplicationController
 
-    def make_master
+    def make_setlist
         minion = current_user.minion_playlists.find(params[:playlists_id])
         new_master = minion.make_master
         if new_master.present? && new_master.spotify_master&.total > 0

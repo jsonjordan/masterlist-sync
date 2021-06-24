@@ -10,7 +10,7 @@
                         <% else %>
                             <%= image_tag("http://lorempixel.com/300/200/", :class => "profile-img center-block") %>
                         <% end %>
-                        <p>You currently have <%= @master.count %> out of <%= @minion.count %> playlists managed by MasterSync! </p>
+                        <p>You currently have <%= @master.count %> out of <%= @minion.count %> playlists managed by SetlistSync! </p>
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
 
         <div class="col-sm-4">
             <div class="panel total-playlists-panel">
-                <div class="panel-heading"> Your <%= @minion.count - @master.count %> playlists without masters: </div>
+                <div class="panel-heading"> Your <%= @minion.count - @master.count %> playlists without setlists: </div>
                 <div class="panel-body">
                     <ol>
                         <% @minion.each do |p|%>
@@ -35,11 +35,11 @@
             <div class ="row">
 
                 <div class="panel master-playlist-panel">
-                    <div class="panel-heading"> Your <%= @master.count %> playlists with masters: </div>
+                    <div class="panel-heading"> Your <%= @master.count %> playlists with setlists: </div>
                     <div class="panel-body">
                         <ol>
                             <% @master.each do |p|%>
-                                <li><%= link_to p.minion_playlists.first.name, "/master/#{p.name}" %></li>
+                                <li><%= link_to p.minion_playlists.first.name, "/setlist/#{p.name}" %></li>
                             <% end %>
                         </ol>
                     </div>
