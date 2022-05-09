@@ -56,7 +56,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-spotify'
 gem 'pundit'
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 group :development, :test do
   gem 'pry-rails'

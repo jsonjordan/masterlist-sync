@@ -11,7 +11,7 @@ class MinionPlaylist < ApplicationRecord
             spotify_user = RSpotify::User.new(self.user.spotify_hash)
             spotify_new_master = spotify_user.create_playlist!("#{self.name} SetlistSync", public: false)
             new_master = self.user.master_playlists.create(
-                name: "#{self.name} Master",
+                name: "#{self.name} SetlistSync",
                 spotify_id: spotify_new_master.id,
             )
             self.master_playlist = new_master
