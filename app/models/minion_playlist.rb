@@ -28,7 +28,9 @@ class MinionPlaylist < ApplicationRecord
                 name: importing_master.name,
                 spotify_id: importing_master.spotify_id,
                 user_id: importing_master.user_id,
-                image_url: importing_master.image_url
+                image_url: importing_master.image_url,
+                last_checked: Date.today,
+                last_updated: Date.today,
             )
             self.master_playlist = new_master
             self.save
