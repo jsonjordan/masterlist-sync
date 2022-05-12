@@ -64,6 +64,24 @@ MasterSync Bronze accent (Umber) = 5E4D4D
   color: white;
 }
 
+.total-playlists-short-panel {
+  background-color: #5E5E5E;
+  color: white;
+  font-size: large;
+  border-radius: 8px;
+  border-left-color: #330C2F;
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  overflow: auto;
+}
+
+.total-playlists-short-panel > .panel-heading {
+  background-color: #575366;
+  color: white;
+}
+
 .playlist-1-panel {
   background-color: white;
   color: #191414;
@@ -99,6 +117,24 @@ MasterSync Bronze accent (Umber) = 5E4D4D
 }
 
 .master-playlist-panel > .panel-heading {
+  background-color: #6D5959;
+  color: white;
+}
+
+.master-playlist-short-panel {
+  background-color: #5E5E5E;
+  color: white;
+  font-size: large;
+  border-radius: 8px;
+  border-left-color: #5E4D4D;
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  overflow: auto;
+}
+
+.master-playlist-short-panel > .panel-heading {
   background-color: #6D5959;
   color: white;
 }

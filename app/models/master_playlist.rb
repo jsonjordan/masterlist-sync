@@ -10,6 +10,7 @@ class MasterPlaylist < ApplicationRecord
         all_tracks = get_all_tracks(spotify_minion)
         add_tracks_to_master(all_tracks)
         update_img
+        self.track_count = all_tracks.count
         self.last_updated = Date.today
         self.last_checked = Date.today
         self.save
@@ -41,7 +42,7 @@ class MasterPlaylist < ApplicationRecord
         new_tracks = minion_tracks.select { |track|
             master_tracks.exclude? track.id
         }
-
+        update_tracks_count(master_tracks)
         remove_local(new_tracks)
     end
 
@@ -75,5 +76,9 @@ class MasterPlaylist < ApplicationRecord
         update_spotify_master
         self.image_url = @spotify_master.images.first&.dig("url") || self.minion_playlists.first.image_url || ""
         self.save if old_image != self.image_url
+    end
+
+    def update_tracks_count(tracks_list)
+        self.track_count = tracks_list.count
     end
 end
