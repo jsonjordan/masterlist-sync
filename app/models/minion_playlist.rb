@@ -21,4 +21,17 @@ class MinionPlaylist < ApplicationRecord
 
         end
     end
+
+    def upgrade_to_master(importing_master)
+        unless self.user.master_playlists.find_by(name: "#{self.name} SetlistSync")
+            new_master = self.user.master_playlists.create(
+                name: importing_master.name,
+                spotify_id: importing_master.spotify_id,
+                user_id: importing_master.user_id,
+                image_url: importing_master.image_url
+            )
+            self.master_playlist = new_master
+            self.save
+        end
+    end
 end

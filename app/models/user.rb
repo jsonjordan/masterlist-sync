@@ -38,6 +38,9 @@ class User < ApplicationRecord
         end
       end
     end
+    if existing_master_playlists.any?
+      import_existing_master_playlists
+    end
   end
 
   def get_all_playlists(playlist_list = [])
@@ -49,11 +52,33 @@ class User < ApplicationRecord
     playlist_list
   end
 
+  def import_existing_master_playlists
+    existing_master_playlists.each do |empl|
+      playlist_name = empl.name.remove(' SetlistSync')
+      if correct_minion = self.minion_playlists.find_by(name: playlist_name)
+        correct_minion.upgrade_to_master(empl)
+      end
+    end
+    validate_and_cleanup
+  end
+
+  def validate_and_cleanup
+    self.master_playlists.each do |maspl|
+      if maspl.minion_playlists.exists? && outdated_playlist = self.minion_playlists.find_by(name: maspl.name)
+        outdated_playlist.destroy
+      end
+    end
+  end
+
   def all_user_playlists
     @all_user_playlists ||= get_all_playlists
   end
 
   def spotify_user
     @spotify_user ||= RSpotify::User.find(self.name)
+  end
+
+  def existing_master_playlists
+    @existing_master_playlists ||= self.minion_playlists.where("name LIKE ?", '% SetlistSync%')
   end
 end

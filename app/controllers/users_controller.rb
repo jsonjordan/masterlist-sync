@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  require 'json'
 
   def dashboard
     if JSON.parse(ENV["ApprovedUsers"]).include? current_user.id
