@@ -39,6 +39,24 @@ MasterSync Bronze accent (Umber) = 5E4D4D
   color: white;
 }
 
+.user-info-short-panel {
+  background-color: #5E5E5E;
+  color: white;
+  font-size: large;
+  border-radius: 8px;
+  border-left-color: #1db954;
+  border-left-width: 6px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  overflow: auto;
+}
+
+.user-info-short-panel > .panel-heading {
+  background-color: #9DCBBA;
+  color: white;
+}
+
 .profile-img {
   border-radius: 50%;
   border: 2px solid #191414;

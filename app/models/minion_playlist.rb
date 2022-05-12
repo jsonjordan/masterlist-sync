@@ -1,4 +1,5 @@
 class MinionPlaylist < ApplicationRecord
+    require 'rake'
 
     validates :name, presence: true
     validates :spotify_id, presence: true
@@ -32,6 +33,7 @@ class MinionPlaylist < ApplicationRecord
                 last_checked: Date.today,
                 last_updated: Date.today,
             )
+            new_master.set_stats
             self.master_playlist = new_master
             self.save
         end

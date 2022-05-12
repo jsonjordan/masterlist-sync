@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_12_164620) do
+ActiveRecord::Schema.define(version: 2022_05_12_191216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_05_12_164620) do
     t.date "last_checked"
     t.date "last_updated"
     t.integer "track_count"
+    t.string "last_song_added"
     t.index ["user_id"], name: "index_master_playlists_on_user_id"
   end
 

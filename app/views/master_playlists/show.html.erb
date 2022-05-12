@@ -22,6 +22,7 @@
                     <div class="panel-body">
                         <ol>
                             <li>Your playlist track count: <%= @master.track_count %> tracks</li>
+                            <li>The last song added to your playlist was: <%= @master.last_song_added %></li>
                             <li>Your playlist was last checked on: <%= @master.last_checked.strftime("%m/%d/%Y") %></li>
                             <li>Your playlist was last updated on: <%= @master.last_updated.strftime("%m/%d/%Y") %></li>
                             <li>Your playlist is currently: <%= @master.disabled ? 'Disabled' : 'Active' %></li>

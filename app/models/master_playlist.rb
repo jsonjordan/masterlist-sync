@@ -13,6 +13,7 @@ class MasterPlaylist < ApplicationRecord
         self.track_count = all_tracks.count
         self.last_updated = Date.today
         self.last_checked = Date.today
+        update_last_song_added(all_tracks.last)
         self.save
         self
     end
@@ -29,6 +30,7 @@ class MasterPlaylist < ApplicationRecord
         new_tracks = get_new_tracks
         if new_tracks.any?
             add_tracks_to_master(new_tracks)
+            update_last_song_added(new_tracks.last)
             self.last_updated = Date.today
         end
         self.last_checked = Date.today
@@ -52,6 +54,16 @@ class MasterPlaylist < ApplicationRecord
             get_all_tracks(playlist, tracks_list)
         end
         remove_local(tracks_list)
+    end
+
+    def set_stats
+        all_tracks = remove_local(get_all_tracks(spotify_master))
+        update_last_song_added(all_tracks.last)
+        update_tracks_count(all_tracks)
+        # TODO add most frequent artists
+        # TODO do you have the alphatunez?  a-z  other achievements
+        # TODO try to use more active record (.pluck instead of map)
+        self.save
     end
 
     def remove_local(track_list)
@@ -80,5 +92,9 @@ class MasterPlaylist < ApplicationRecord
 
     def update_tracks_count(tracks_list)
         self.track_count = tracks_list.count
+    end
+
+    def update_last_song_added(song)
+        self.last_song_added = "#{song.name} by #{song.artists.first.name}"
     end
 end
