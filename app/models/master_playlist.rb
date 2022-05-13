@@ -63,6 +63,7 @@ class MasterPlaylist < ApplicationRecord
         # TODO add most frequent artists
         # TODO do you have the alphatunez?  a-z  other achievements
         # TODO try to use more active record (.pluck instead of map)
+        # TODO add rake task to set stats for prod
         self.save
     end
 
