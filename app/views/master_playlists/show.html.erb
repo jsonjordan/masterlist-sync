@@ -11,22 +11,32 @@
                             <%= image_tag("http://lorempixel.com/300/300/") %>
                         <% end %>
                     </div>
+                    Status:
+                    <ul>
+                        <li>Your playlist is currently:  <span style= <%= @master.disabled ? 'color:red' : 'color:#1db954' %> > <%= @master.disabled ? 'Disabled' : 'Active' %></span></li>
+                        <li>Last checked on: <%= @master.last_checked.strftime("%m/%d/%Y") %></li>
+                        <li>Last updated on: <%= @master.last_updated.strftime("%m/%d/%Y") %></li>
+                    </ul>
                 </div>
             </div>
         </div>
+
 
         <div class="col-sm-8">
             <div class="row">
                 <div class="panel total-playlists-short-panel ">
                     <div class="panel-heading"> Stats </div>
                     <div class="panel-body">
-                        <ol>
+                        <ul>
                             <li>Your playlist track count: <%= @master.track_count %> tracks</li>
                             <li>The last song added to your playlist was: <%= @master.last_song_added %></li>
-                            <li>Your playlist was last checked on: <%= @master.last_checked.strftime("%m/%d/%Y") %></li>
-                            <li>Your playlist was last updated on: <%= @master.last_updated.strftime("%m/%d/%Y") %></li>
-                            <li>Your playlist is currently: <%= @master.disabled ? 'Disabled' : 'Active' %></li>
-                        </ol>
+                            <li>The top five artists by tracks on your playlist are:</li>
+                            <ol>
+                            <% @master.top_artists.each do |artist| %>
+                                <li><%= artist['artist_name'] %>:  <%= artist['songs_count'] %> tracks</li>
+                            <% end %>
+                            </ol>
+                        </ul>
                     </div>
                 </div>
                 <div class="panel master-playlist-short-panel">

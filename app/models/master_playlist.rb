@@ -60,6 +60,7 @@ class MasterPlaylist < ApplicationRecord
         all_tracks = remove_local(get_all_tracks(spotify_master))
         update_last_song_added(all_tracks.last)
         update_tracks_count(all_tracks)
+        update_most_frequent_artists(all_tracks)
         # TODO add most frequent artists
         # TODO do you have the alphatunez?  a-z  other achievements
         # TODO try to use more active record (.pluck instead of map)
@@ -97,5 +98,26 @@ class MasterPlaylist < ApplicationRecord
 
     def update_last_song_added(song)
         self.last_song_added = "#{song.name} by #{song.artists.first.name}"
+    end
+
+    def update_most_frequent_artists(track_list)
+        self.top_artists = get_top_five_artists(track_list)
+    end
+
+    def get_top_five_artists(track_list)
+        top_artists = track_list.map { |track| track.artists.first.name }
+            .group_by(&:itself).values
+            .sort_by(&:length).reverse
+            .first(5)
+
+        artist_count = []
+        top_artists.each do |artist|
+            artist_info = {
+                'artist_name' => artist.first,
+                'songs_count' => artist.count
+            }
+            artist_count.push(artist_info)
+        end
+        artist_count
     end
 end
