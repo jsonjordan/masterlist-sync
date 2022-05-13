@@ -47,6 +47,18 @@
                         </ol>
                     </div>
                 </div>
+                <div class="panel total-playlists-short-panel">
+                    <div class="panel-heading"> Achievements</div>
+                    <div class="panel-body">
+                        <ul>
+                            <% if @master.missing_alphatunez_letters.empty? %>
+                                <li title="The Alphatunez achievement means you have at least one song thats starts with each of the letters of the alphabet and at least one that starts with a number or symbol." >Alphatunez!</li>
+                            <% else %>
+                                <li title="The # symbol stands for a number or symbol">For the Alphatunez achievement, you are missing songs that start with: </li> <%= @master.missing_alphatunez_letters.join(', ').reverse.sub(',', "dna ").reverse %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

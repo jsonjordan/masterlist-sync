@@ -61,10 +61,9 @@ class MasterPlaylist < ApplicationRecord
         update_last_song_added(all_tracks.last)
         update_tracks_count(all_tracks)
         update_most_frequent_artists(all_tracks)
-        # TODO add most frequent artists
-        # TODO do you have the alphatunez?  a-z  other achievements
-        # TODO try to use more active record (.pluck instead of map)
-        # TODO add rake task to set stats for prod
+        update_alphatunez_achievement(all_tracks)
+        # TODO other achievements
+        # TODO try to use more active record
         self.save
     end
 
@@ -106,8 +105,10 @@ class MasterPlaylist < ApplicationRecord
 
     def get_top_five_artists(track_list)
         top_artists = track_list.map { |track| track.artists.first.name }
-            .group_by(&:itself).values
-            .sort_by(&:length).reverse
+            .group_by(&:itself)
+            .values
+            .sort_by(&:length)
+            .reverse
             .first(5)
 
         artist_count = []
@@ -119,5 +120,19 @@ class MasterPlaylist < ApplicationRecord
             artist_count.push(artist_info)
         end
         artist_count
+    end
+
+    def update_alphatunez_achievement(track_list)
+        numbers_and_symbols = ('0'..'9').to_a.push('!','@','$','%','^','&','*','(',')','<','>','?')
+        first_letter_track_title = track_list.map { |track| track.name[0].upcase }
+            .map { |letter| numbers_and_symbols.include?(letter) ? '#' : letter }
+            .group_by(&:itself)
+            .values
+            .sort
+            .flatten
+            .uniq
+
+        self.missing_alphatunez_letters = ('A'..'Z').to_a.push('#')
+            .select { |letter| first_letter_track_title.exclude?(letter)}
     end
 end
