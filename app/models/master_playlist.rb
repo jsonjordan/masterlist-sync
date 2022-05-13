@@ -29,7 +29,7 @@ class MasterPlaylist < ApplicationRecord
         new_tracks = get_new_tracks
         if new_tracks.any?
             add_tracks_to_master(new_tracks)
-            update_last_song_added(new_tracks.last)
+            update_last_song_added
             self.last_updated = Date.today
         end
         self.last_checked = Date.today
