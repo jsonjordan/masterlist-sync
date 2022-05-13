@@ -7,13 +7,12 @@ class MasterPlaylist < ApplicationRecord
     has_many :minion_playlists
     
     def initialize_master
-        all_tracks = get_all_tracks(spotify_minion)
-        add_tracks_to_master(all_tracks)
+        add_tracks_to_master(minion_tracks)
         update_img
-        self.track_count = all_tracks.count
+        self.track_count = minion_tracks.count
         self.last_updated = Date.today
         self.last_checked = Date.today
-        update_last_song_added(all_tracks.last)
+        set_stats
         self.save
         self
     end
@@ -38,13 +37,12 @@ class MasterPlaylist < ApplicationRecord
     end
 
     def get_new_tracks
-        minion_tracks = get_all_tracks(spotify_minion)
-        master_tracks = get_all_tracks(spotify_master).map { |track| track.id}
+        master_tracks_ids = get_all_tracks(spotify_master).map { |track| track.id}
 
         new_tracks = minion_tracks.select { |track|
-            master_tracks.exclude? track.id
+            master_tracks_ids.exclude? track.id
         }
-        update_tracks_count(master_tracks)
+        update_tracks_count
         remove_local(new_tracks)
     end
 
@@ -57,11 +55,10 @@ class MasterPlaylist < ApplicationRecord
     end
 
     def set_stats
-        all_tracks = remove_local(get_all_tracks(spotify_master))
-        update_last_song_added(all_tracks.last)
-        update_tracks_count(all_tracks)
-        update_most_frequent_artists(all_tracks)
-        update_alphatunez_achievement(all_tracks)
+        update_last_song_added
+        update_tracks_count
+        update_most_frequent_artists
+        update_alphatunez_achievement
         # TODO other achievements
         # TODO try to use more active record
         self.save
@@ -71,19 +68,6 @@ class MasterPlaylist < ApplicationRecord
         filtered = track_list.select { |track| track.uri.exclude? "local"}
     end
 
-    def spotify_master
-        @spotify_master ||= RSpotify::Playlist.find(self.user.name, self.spotify_id)
-    end
-
-    def spotify_minion
-        @spotify_minion ||= RSpotify::Playlist.find(self.user.name, self.minion_playlists.first.spotify_id)
-    end
-
-    def update_spotify_master
-        @spotify_master = RSpotify::Playlist.find(self.user.name, self.spotify_id)
-    end
-
-
     def update_img
         old_image = self.image_url
         update_spotify_master
@@ -91,20 +75,21 @@ class MasterPlaylist < ApplicationRecord
         self.save if old_image != self.image_url
     end
 
-    def update_tracks_count(tracks_list)
-        self.track_count = tracks_list.count
+    def update_tracks_count
+        self.track_count = master_tracks.count
     end
 
-    def update_last_song_added(song)
+    def update_last_song_added
+        song = master_tracks.last
         self.last_song_added = "#{song.name} by #{song.artists.first.name}"
     end
 
-    def update_most_frequent_artists(track_list)
-        self.top_artists = get_top_five_artists(track_list)
+    def update_most_frequent_artists
+        self.top_artists = get_top_five_artists
     end
 
-    def get_top_five_artists(track_list)
-        top_artists = track_list.map { |track| track.artists.first.name }
+    def get_top_five_artists
+        top_artists = master_tracks.map { |track| track.artists.first.name }
             .group_by(&:itself)
             .values
             .sort_by(&:length)
@@ -122,9 +107,9 @@ class MasterPlaylist < ApplicationRecord
         artist_count
     end
 
-    def update_alphatunez_achievement(track_list)
+    def update_alphatunez_achievement
         numbers_and_symbols = ('0'..'9').to_a.push('!','@','$','%','^','&','*','(',')','<','>','?')
-        first_letter_track_title = track_list.map { |track| track.name[0].upcase }
+        first_letter_track_titles = master_tracks.map { |track| track.name[0].upcase }
             .map { |letter| numbers_and_symbols.include?(letter) ? '#' : letter }
             .group_by(&:itself)
             .values
@@ -133,6 +118,26 @@ class MasterPlaylist < ApplicationRecord
             .uniq
 
         self.missing_alphatunez_letters = ('A'..'Z').to_a.push('#')
-            .select { |letter| first_letter_track_title.exclude?(letter)}
+            .select { |letter| first_letter_track_titles.exclude?(letter)}
+    end
+
+    def spotify_master
+        @spotify_master ||= RSpotify::Playlist.find(self.user.name, self.spotify_id)
+    end
+
+    def spotify_minion
+        @spotify_minion ||= RSpotify::Playlist.find(self.user.name, self.minion_playlists.first.spotify_id)
+    end
+
+    def update_spotify_master
+        @spotify_master = RSpotify::Playlist.find(self.user.name, self.spotify_id)
+    end
+
+    def minion_tracks
+        @minion_tracks ||= get_all_tracks(spotify_minion)
+    end
+
+    def master_tracks
+        @master_tracks ||= get_all_tracks(spotify_master)
     end
 end
