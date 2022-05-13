@@ -8,5 +8,6 @@ task update_master_playlists: :environment do
             spotify_user_id = pl.user.id
         end
         pl.update_tracks
+        pl.set_stats
     end
 end
